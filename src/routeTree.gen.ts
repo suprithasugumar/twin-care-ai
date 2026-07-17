@@ -9,13 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as FutureMeRouteImport } from './routes/future-me'
+import { Route as ExplainabilityRouteImport } from './routes/explainability'
+import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CoachRouteImport } from './routes/coach'
 import { Route as CheckinRouteImport } from './routes/checkin'
+import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -31,14 +43,44 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FutureMeRoute = FutureMeRouteImport.update({
+  id: '/future-me',
+  path: '/future-me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplainabilityRoute = ExplainabilityRouteImport.update({
+  id: '/explainability',
+  path: '/explainability',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmergencyRoute = EmergencyRouteImport.update({
+  id: '/emergency',
+  path: '/emergency',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoachRoute = CoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckinRoute = CheckinRouteImport.update({
   id: '/checkin',
   path: '/checkin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalysisRoute = AnalysisRouteImport.update({
+  id: '/analysis',
+  path: '/analysis',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,61 +91,123 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analysis': typeof AnalysisRoute
   '/checkin': typeof CheckinRoute
+  '/coach': typeof CoachRoute
   '/dashboard': typeof DashboardRoute
+  '/emergency': typeof EmergencyRoute
+  '/explainability': typeof ExplainabilityRoute
+  '/future-me': typeof FutureMeRoute
+  '/history': typeof HistoryRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analysis': typeof AnalysisRoute
   '/checkin': typeof CheckinRoute
+  '/coach': typeof CoachRoute
   '/dashboard': typeof DashboardRoute
+  '/emergency': typeof EmergencyRoute
+  '/explainability': typeof ExplainabilityRoute
+  '/future-me': typeof FutureMeRoute
+  '/history': typeof HistoryRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analysis': typeof AnalysisRoute
   '/checkin': typeof CheckinRoute
+  '/coach': typeof CoachRoute
   '/dashboard': typeof DashboardRoute
+  '/emergency': typeof EmergencyRoute
+  '/explainability': typeof ExplainabilityRoute
+  '/future-me': typeof FutureMeRoute
+  '/history': typeof HistoryRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analysis'
     | '/checkin'
+    | '/coach'
     | '/dashboard'
+    | '/emergency'
+    | '/explainability'
+    | '/future-me'
+    | '/history'
     | '/login'
     | '/profile'
     | '/register'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checkin' | '/dashboard' | '/login' | '/profile' | '/register'
+  to:
+    | '/'
+    | '/analysis'
+    | '/checkin'
+    | '/coach'
+    | '/dashboard'
+    | '/emergency'
+    | '/explainability'
+    | '/future-me'
+    | '/history'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/settings'
   id:
     | '__root__'
     | '/'
+    | '/analysis'
     | '/checkin'
+    | '/coach'
     | '/dashboard'
+    | '/emergency'
+    | '/explainability'
+    | '/future-me'
+    | '/history'
     | '/login'
     | '/profile'
     | '/register'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalysisRoute: typeof AnalysisRoute
   CheckinRoute: typeof CheckinRoute
+  CoachRoute: typeof CoachRoute
   DashboardRoute: typeof DashboardRoute
+  EmergencyRoute: typeof EmergencyRoute
+  ExplainabilityRoute: typeof ExplainabilityRoute
+  FutureMeRoute: typeof FutureMeRoute
+  HistoryRoute: typeof HistoryRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -125,6 +229,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/future-me': {
+      id: '/future-me'
+      path: '/future-me'
+      fullPath: '/future-me'
+      preLoaderRoute: typeof FutureMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explainability': {
+      id: '/explainability'
+      path: '/explainability'
+      fullPath: '/explainability'
+      preLoaderRoute: typeof ExplainabilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emergency': {
+      id: '/emergency'
+      path: '/emergency'
+      fullPath: '/emergency'
+      preLoaderRoute: typeof EmergencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -132,11 +264,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coach': {
+      id: '/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof CoachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkin': {
       id: '/checkin'
       path: '/checkin'
       fullPath: '/checkin'
       preLoaderRoute: typeof CheckinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analysis': {
+      id: '/analysis'
+      path: '/analysis'
+      fullPath: '/analysis'
+      preLoaderRoute: typeof AnalysisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -151,11 +297,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalysisRoute: AnalysisRoute,
   CheckinRoute: CheckinRoute,
+  CoachRoute: CoachRoute,
   DashboardRoute: DashboardRoute,
+  EmergencyRoute: EmergencyRoute,
+  ExplainabilityRoute: ExplainabilityRoute,
+  FutureMeRoute: FutureMeRoute,
+  HistoryRoute: HistoryRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
